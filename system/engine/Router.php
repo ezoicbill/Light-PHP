@@ -20,11 +20,17 @@ class Router
      */
     public function __construct()
     {
+        if (php_sapi_name() === "cli" ) {
+
+        } else {
+
+        }
+
         $url_protocol = "http";
         if (isset($_SERVER['HTTPS'])) {
             $url_protocol = "https";
         }
-        
+
         $url_host = $url_protocol.'://'.$_SERVER['HTTP_HOST'];
 
         $url_action = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
